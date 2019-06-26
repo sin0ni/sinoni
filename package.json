@@ -1,0 +1,37 @@
+{
+  "name": "sinoni",
+  "version": "1.0.0",
+  "description": "Sinoni for NodeJS",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sin0ni/sinoni.git"
+  },
+  "author": {
+    "name": "sin0ni"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sin0ni/sinoni/issues"
+  },
+  "homepage": "https://github.com/sin0ni/sinoni#readme",
+  "dependencies": {
+    "axios": "0.19.0",
+    "qs": "6.7.0"
+  },
+  "keywords": [
+    "sinoni",
+    "rewrite",
+    "rewriter",
+    "re-write",
+    "re-writer",
+    "antiplagiat",
+    "plagiarism",
+    "checking",
+    "checker",
+    "uniqueness",
+    "unique",
+    "check",
+    "api"
+  ]
+}
