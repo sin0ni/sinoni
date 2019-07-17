@@ -19,7 +19,7 @@ sinoni({
     text: "Your article",
     lang: "en"
 }).then(res => {
-    console.log(res.rewrite); // Your rewrite
+    console.log(res.text); // Your rewrite
 }).catch(console.error);
 ```
 
