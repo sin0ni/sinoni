@@ -17,10 +17,10 @@ const sinoni = async (params) => {
     if (!id) {
         try {
             let {data} = await axios.post('https://api.' + domain, qs.stringify(api));
-            if (!data.id) {
+            if (!data || !data.result || !data.result.id) {
                 return Promise.reject('ERROR ID');
             }
-            api.id = data.id;
+            api.id = data.result.id;
         } catch (e) {
             console.error(e);
             return Promise.reject('ERROR POST');
