@@ -20,6 +20,10 @@ sinoni({
     lang: "en"
 }).then(res => {
     console.log(res.rewrite); // Your rewrite
+    
+    // If after 5 minutes you do not get the result,
+    // the check is terminated.
+    console.log(res); //=> {"token": "XXX", "id": "YYY"}
 }).catch(console.error);
 ```
 

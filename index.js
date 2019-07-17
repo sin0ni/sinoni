@@ -8,7 +8,7 @@ const sinoni = async (params) => {
 
     let api = JSON.parse(JSON.stringify(params));
     api.timeout = api.timeout ? parseInt(api.timeout) : 300;
-    let {id} = api;
+    let {id, token} = api;
 
     let domain = api.lang && api.lang === 'ru'
         ? 'sinoni.men'
@@ -20,6 +20,7 @@ const sinoni = async (params) => {
             if (!data || !data.result || !data.result.id) {
                 return Promise.reject('ERROR ID');
             }
+            id = data.result.id;
             api.id = data.result.id;
         } catch (e) {
             console.error(e);
@@ -28,7 +29,7 @@ const sinoni = async (params) => {
     }
 
     return new Promise(resolve => {
-        let result = api, n = 0, i = setInterval(() => {
+        let n = 0, i = setInterval(() => {
             axios.post('https://api.' + domain, qs.stringify(api)).then(res => {
                 let {rewrite, percent, words, spam, water} = res && res.data && res.data.result
                     ? res.data.result
@@ -42,20 +43,20 @@ const sinoni = async (params) => {
                             typeof water === 'number'
                         ) {
                             clearInterval(i);
-                            return resolve(result);
+                            return resolve({token, id, rewrite, percent, words, spam, water});
                         }
                     } else {
                         clearInterval(i);
-                        return resolve(result);
+                        return resolve({token, id, rewrite});
                     }
                 }
             }).catch(() => {
                 clearInterval(i);
-                return resolve(result);
+                return resolve({token, id});
             });
             if (++n >= api.timeout / 2) {
                 clearInterval(i);
-                return resolve(result);
+                return resolve({token, id});
             }
         }, 2000);
     });
