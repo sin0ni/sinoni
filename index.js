@@ -10,7 +10,7 @@ const sinoni = async (params) => {
     api.timeout = api.timeout ? parseInt(api.timeout) : 300;
     let {id} = api;
 
-    let domain = api.lang === 'ru'
+    let domain = api.lang && api.lang === 'ru'
         ? 'sinoni.men'
         : 'rewriter.tools';
 
