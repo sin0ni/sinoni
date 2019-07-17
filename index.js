@@ -10,9 +10,13 @@ const sinoni = async (params) => {
     api.timeout = api.timeout ? parseInt(api.timeout) : 300;
     let {id} = api;
 
+    let domain = api.lang === 'ru'
+        ? 'sinoni.men'
+        : 'rewriter.tools';
+
     if (!id) {
         try {
-            let {data} = await axios.post('https://api.rewriter.tools', qs.stringify(api));
+            let {data} = await axios.post('https://api.' + domain, qs.stringify(api));
             if (!data.id) {
                 return Promise.reject('ERROR ID');
             }
@@ -25,7 +29,7 @@ const sinoni = async (params) => {
 
     return new Promise(resolve => {
         let result = api, n = 0, i = setInterval(() => {
-            axios.post('https://api.rewriter.tools', qs.stringify(api)).then(res => {
+            axios.post('https://api.' + domain, qs.stringify(api)).then(res => {
                 let {rewrite, percent, words, spam, water} = res && res.data && res.data.result
                     ? res.data.result
                     : {};
