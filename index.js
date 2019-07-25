@@ -35,7 +35,12 @@ const sinoni = async (params) => {
                     ? res.data.result
                     : {};
                 if (rewrite) {
-                    if (api.unique) {
+                    if (
+                        (typeof api.unique === 'boolean' && api.unique === true) ||
+                        (typeof api.unique === 'string' && api.unique === 'true') ||
+                        (typeof api.unique === 'number' && api.unique === 1) ||
+                        (typeof api.unique === 'string' && api.unique === '1')
+                    ) {
                         if (
                             typeof percent === 'number' &&
                             typeof words === 'number' &&
